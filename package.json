@@ -1,0 +1,25 @@
+{
+  "name": "rafamel-watercooler",
+  "version": "0.1.0",
+  "description": "Some cool stuff I've been doing",
+  "author": "Rafa Mel",
+  "private": true,
+  "scripts": {
+    "dev": "live-server --port=5000 --ignore=**/node_modules/** --no-browser",
+    "precommit": "MSG='Commiting in:' npm run validate",
+    "fix": "prettier --ignore-path .gitignore --write \"**/*.{js,css,md}\"",
+    "lint:md": "markdownlint *.md --config markdown.json",
+    "validate": "run-s fix lint:md && npm run outdated",
+    "update": "npm update --save/save-dev && npm outdated",
+    "outdated": "if !(npm outdated) && [ -n \"$MSG\" ]; then printf \"\n\" && for ((i=10; i>=0; --i)); do sleep 1 && printf '\r%s %2d' \"$MSG\" \"$i\"; done; fi;"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chokidar": "^2.0.2",
+    "husky": "^0.14.3",
+    "live-server": "^1.2.0",
+    "markdownlint-cli": "^0.7.1",
+    "npm-run-all": "^4.1.1",
+    "prettier": "1.10.2"
+  }
+}
