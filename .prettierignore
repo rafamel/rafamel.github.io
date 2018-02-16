@@ -1,0 +1,6 @@
+_test.js
+build
+dist
+.cache
+coverage
+node_modules

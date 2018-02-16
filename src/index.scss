@@ -1,0 +1,14 @@
+body {
+  font-family: 'Karla', sans-serif;
+  margin: 33px 35px 50px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  @media only screen and (min-width: 768px) {
+    margin: 80px 100px 50px 10%;
+  }
+  @media only screen and (min-width: 1150px) {
+    max-width: 875px;
+    padding-right: 50px;
+    margin-left: 19%;
+  }
+}

@@ -1,3 +1,5 @@
-# Watercooler
+<!-- markdownlint-disable MD026 -->
 
-Just some cool stuff I'm working on.
+# Building stuff somewhere around :earth_americas:
+
+[rafamel.github.io](https://rafamel.github.io/)
