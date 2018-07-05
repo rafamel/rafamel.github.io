@@ -3,19 +3,47 @@
     "env",
     "react"
   ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel",
+        [
+          "import-globals",
+          {
+            "swal": "sweetalert"
+          }
+        ]
+      ]
+    }
+  },
   "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./src/lib"
+        ],
+        "alias": {
+          "~": "./src",
+          "#": "./src/components",
+          "@static": "./public/static",
+          "@commons": "@rafamel/react-commons"
+        }
+      }
+    ],
+    "transform-decorators-legacy",
+    [
+      "emotion",
+      {
+        "autoLabel": true,
+        "hoist": true
+      }
+    ],
     "transform-class-properties",
     [
       "transform-object-rest-spread",
       {
         "useBuiltIns": true
-      }
-    ],
-    [
-      "babel-plugin-root-import",
-      {
-        "rootPathPrefix": "@",
-        "rootPathSuffix": "src"
       }
     ]
   ],

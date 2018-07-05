@@ -3,9 +3,11 @@
 
 # Node, Frameworks, Editors #
 #############################
+_test.js
+lib
 # build
 dist
-_test.js
+.cache
 .env
 .env.local
 .env.development.local
@@ -14,7 +16,6 @@ _test.js
 coverage
 node_modules
 npm-debug.log
-.cache
 
 # Compiled source #
 ###################

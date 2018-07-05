@@ -1,4 +1,4 @@
-// npm i --save-dev eslint babel-eslint eslint-config-standard eslint-plugin-import eslint-plugin-jest eslint-plugin-node eslint-plugin-promise eslint-plugin-standard prettier eslint-config-prettier eslint-plugin-prettier
+const globals = require('eslint-restricted-globals');
 
 module.exports = {
   root: true,
@@ -18,21 +18,25 @@ module.exports = {
   parserOptions: {
     impliedStrict: true
   },
-  plugins: [
-    'prettier',
-    'jest',
-    'react',
-    'jsx-a11y',
-    'import',
-    'class-property'
-  ],
+  plugins: ['prettier', 'jest', 'react', 'jsx-a11y', 'import', 'babel'],
   globals: {},
   rules: {
-    'prettier/prettier': [2, require('./.prettierrc')],
     'no-console': 1,
+    'jsx-a11y/no-autofocus': 0,
+    'no-restricted-globals': [2, 'fetch'].concat(globals),
+    'react/prop-types': [2, { ignore: ['styles', 'theme', 'store'] }],
+    // eslint-plugin-babel
+    'babel/no-invalid-this': 1,
+    'babel/semi': 1,
     // Breaking change of jsx-x11y with 'react-app' defaults
     'jsx-a11y/href-no-hash': 0,
-    // Can't detect non-relative to ./src
-    'import/no-unresolved': 0
+    // Prettier
+    'prettier/prettier': [2, require('./.prettierrc')]
+  },
+  settings: {
+    // babel-plugin-module-resolver
+    'import/resolver': {
+      'babel-module': {}
+    }
   }
 };
