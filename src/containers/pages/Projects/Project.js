@@ -57,19 +57,25 @@ class Project extends React.Component {
     icons: PropTypes.arrayOf(PropTypes.string).isRequired,
     github: PropTypes.string
   };
-  static getDerivedStateFromProps({ github }, state) {
-    if (!github) return state;
+  static getDerivedStateFromProps({ github, url }, state) {
+    if (!github && !url) return state;
     return {
       ...state,
-      link: () => window.open(`https://github.com/${github}`, '_blank')
+      link: () => {
+        // eslint-disable-next-line no-restricted-globals
+        return window.open(
+          github ? `https://github.com/${github}` : url,
+          '_blank'
+        );
+      }
     };
   }
   state = {
     isActive: false,
-    link: () => {}
+    link: null
   };
   render() {
-    const { name, description, icons, github, styles } = this.props;
+    const { name, description, icons, styles } = this.props;
     const { isActive, link } = this.state;
     return (
       <div
@@ -80,10 +86,10 @@ class Project extends React.Component {
         <header css={styles.header}>
           {/* eslint-disable-next-line */}
           <h2
-            onClick={link}
+            onClick={link || (() => {})}
             className={cx({
               [css(styles.title.default)]: true,
-              [css(styles.title.link)]: github
+              [css(styles.title.link)]: link
             })}
           >
             {name}

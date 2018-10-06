@@ -6,9 +6,34 @@ import knex from '@static/icons/knex.png';
 import redux from '@static/icons/redux.png';
 import materialui from '@static/icons/materialui.png';
 import graphql from '@static/icons/graphql.svg';
+import mobx from '@static/icons/mobx.png';
+import emotion from '@static/icons/emotion.png';
+import sqlite from '@static/icons/sqlite.png';
+import rxjs from '@static/icons/rxjs.png';
+import couchdb from '@static/icons/couchdb.png';
+import lerna from '@static/icons/lerna.png';
+import parcel from '@static/icons/parcel.png';
+import rxdb from '@static/icons/rxdb.png';
+import auth0 from '@static/icons/auth0.png';
 
 // Prefetch images
-prefetch.batchAdd([electron, jest, knex, redux, materialui, graphql]);
+prefetch.batchAdd([
+  electron,
+  jest,
+  knex,
+  redux,
+  materialui,
+  graphql,
+  mobx,
+  emotion,
+  sqlite,
+  rxjs,
+  couchdb,
+  lerna,
+  parcel,
+  rxdb,
+  auth0
+]);
 
 const iconClass = `tag-icon-${Math.round(Math.random() * 10000)}`;
 injectGlobal({
@@ -45,6 +70,51 @@ export default {
   express: {
     name: 'Express',
     className: 'devicon-express-original colored'
+  },
+  mobx: {
+    name: 'MobX',
+    className: iconClass,
+    styles: { backgroundImage: `url("${mobx}")` }
+  },
+  parcel: {
+    name: 'Parcel Bundler',
+    className: iconClass,
+    styles: { backgroundImage: `url("${parcel}")` }
+  },
+  emotion: {
+    name: 'Emotion',
+    className: iconClass,
+    styles: { backgroundImage: `url("${emotion}")` }
+  },
+  sqlite: {
+    name: 'SQLite',
+    className: iconClass,
+    styles: { backgroundImage: `url("${sqlite}")` }
+  },
+  rxjs: {
+    name: 'RxJS',
+    className: iconClass,
+    styles: { backgroundImage: `url("${rxjs}")` }
+  },
+  rxdb: {
+    name: 'RxDB',
+    className: iconClass,
+    styles: { backgroundImage: `url("${rxdb}")` }
+  },
+  couchdb: {
+    name: 'CouchDB',
+    className: iconClass,
+    styles: { backgroundImage: `url("${couchdb}")` }
+  },
+  auth0: {
+    name: 'Auth0',
+    className: iconClass,
+    styles: { backgroundImage: `url("${auth0}")` }
+  },
+  lerna: {
+    name: 'Lerna',
+    className: iconClass,
+    styles: { backgroundImage: `url("${lerna}")` }
   },
   graphql: {
     name: 'GraphQL',

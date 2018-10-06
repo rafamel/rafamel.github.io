@@ -1,11 +1,80 @@
 export default [
   {
-    name: 'graphql-patio (ongoing)',
-    description: `A deep dive into GraphQL on the server by implementing a roughly similar API with different patterns and stacks.`,
-    icons: ['node', 'express', 'graphql', 'sequelize', 'objection', 'babel']
+    name: 'Sloth Pilot',
+    url: 'https://slothpilot.surge.sh/',
+    description: `A basic routines app showcasing RxDB + rxdb-utils, kompi, and couchdb-proxy working together for an offline-first, fully reactive and synced PWA.`,
+    icons: [
+      'javascript',
+      'parcel',
+      'react',
+      'auth0',
+      'rxdb',
+      'rxjs',
+      'mobx',
+      'emotion',
+      'materialui',
+      'node',
+      'express',
+      'couchdb',
+      'docker',
+      'babel'
+    ]
   },
   {
-    name: 'rest-api-boilerplate (unreleased)',
+    name: 'rxdb-utils',
+    github: 'rafamel/rxdb-utils',
+    description: `RxDB's missing pieces. Includes plugins and utilities for RxDB allowing, amongst other things, for single remote couchdb databases to be used for all collections, subscribable getter definitions for models with query ensurances, better observable returning function definitions, and conflict resolution.`,
+    icons: ['javascript', 'rxdb', 'rxjs', 'jest', 'travis', 'babel']
+  },
+  {
+    name: 'kompi (unreleased, ongoing)',
+    github: 'rafamel/kompi',
+    description: `Framework agnostic reactive component props composition. Currently only a React adapter is available. Builds on the precedent of recompose and proppy to create the swiss army knife of component props & component composition, with RxJS at its root.`,
+    icons: ['javascript', 'rxjs', 'react', 'lerna', 'jest', 'travis', 'babel']
+  },
+  {
+    name: 'couchdb-proxy (unreleased, ongoing)',
+    // github: 'rafamel/couchdb-proxy',
+    description: `A monorepo including a express-pluggable couchdb reverse proxy app, and a fully configured express application, for one-stop couchdb setup. Allows for custom authentication strategies and database action discrimination. Built to complement rxdb & rxdb-utils for a straightforwards infrastructure setup with CouchDB.`,
+    icons: ['node', 'express', 'couchdb', 'lerna', 'jest', 'travis', 'babel']
+  },
+  {
+    name: 'rxjs-utils (unreleased, ongoing)',
+    github: 'rafamel/rxjs-utils',
+    description: `RxJS 6 observable creation utils and operators.`,
+    icons: ['javascript', 'rxjs', 'jest', 'travis', 'babel']
+  },
+  {
+    name: 'electron-jamman',
+    github: 'rafamel/electron-jamman',
+    description: `An electron app to help out with JamMan Solo XT.`,
+    icons: ['javascript', 'sqlite', 'electron', 'babel']
+  },
+  {
+    name: 'aslug',
+    github: 'rafamel/aslug',
+    description:
+      "Slug a string while preserving its uniqueness. By default, it substitutes each forbidden character for its code, surrounded by a separator. The clearest use case is for ids that must be made safe, while assuring they won't conflict with other valid ids.",
+    icons: ['javascript', 'jest', 'travis', 'babel']
+  },
+  {
+    name: 'react-boilerplate',
+    github: 'rafamel/react-boilerplate',
+    description:
+      'Parcel w/ HMR, Babel, MobX & MST, Emotion, Material UI, Jest & Enzime. Packs default support for PWA, HMR, and contextual theming and store.',
+    icons: [
+      'javascript',
+      'parcel',
+      'react',
+      'mobx',
+      'emotion',
+      'materialui',
+      'jest',
+      'babel'
+    ]
+  },
+  {
+    name: 'rest-api-boilerplate',
     github: 'rafamel/rest-api-boilerplate',
     description:
       'ES2017, Express, Postgress, Objection.js, tokens, and Docker, ready for the win.',
@@ -33,7 +102,7 @@ export default [
     name: 'joi-add',
     github: 'rafamel/joi-add',
     description: `Add and expand on previously defined Joi schemas. Define check-specific error messages. Add custom function validations.`,
-    icons: ['node', 'jest', 'travis']
+    icons: ['javascript', 'babel', 'jest', 'travis']
   },
   {
     name: 'objection-before-and-unique',

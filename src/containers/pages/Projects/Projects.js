@@ -4,7 +4,9 @@ import projects from './project-list';
 
 const Projects = () => (
   <React.Fragment>
-    {projects.map((project) => <Project key={project.name} {...project} />)}
+    {projects.map((project) => (
+      <Project key={project.name} {...project} />
+    ))}
   </React.Fragment>
 );
 

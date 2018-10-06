@@ -1,6 +1,6 @@
 const registerSx = (sx, _ = (global.SX = {})) =>
   Object.keys(sx).forEach((key) => (global.SX[key] = sx[key]));
-const sx = (name) => `node -r ./package-scripts.js -e global.SX.${name}\\(\\)`;
+const sx = (name) => `node -r ./package-scripts.js -e "global.SX.${name}()"`;
 const scripts = (x) => ({ scripts: x });
 const exit0 = (x) => `${x} || shx echo `;
 const series = (x) => `(${x.join(') && (')})`;
@@ -25,47 +25,49 @@ const cnf = {
 
 process.env.LOG_LEVEL = 'disable';
 module.exports = scripts({
-  start: watch({ hmr: true, open: true, wait: 1500 }),
+  start: watch({ hmr: true, open: true, wait: 1750 }),
   dev: {
-    default: watch({ hmr: false, open: false, wait: 1000 }),
+    default: watch({ hmr: false, open: false, wait: 1750 }),
     hmr: watch({ hmr: true, open: false, wait: 2000 }),
     json: `json-server ${cnf.in.dbMock} -p 3333 -w`
   },
   build: series([
     'nps validate',
-    exit0(`shx rm index.html`),
     exit0(`shx rm -r ${cnf.out.prod}`),
     `parcel build ${cnf.in.entry} --public-url ./build -d ${
       cnf.out.prod
     } --no-cache`,
-    `shx cp ${cnf.out.prod}/index.html ./`
+    `shx mv ${cnf.out.prod}/index.html ./index.html`
   ]),
   serve: `serve ./ -l ${cnf.port.prod}`,
   analyze: `source-map-explorer ${cnf.out.prod}/src.*.js`,
-  fix: `prettier --write "${cnf.in.src}/**/*.{js,jsx,ts,scss,md}"`,
+  fix: `prettier --write "${cnf.in.src}/**/*.{js,jsx,ts,scss}"`,
   lint: {
     default: series([
       `eslint ${cnf.in.src} --ext .js`,
       'shx echo "No linting errors."'
     ]),
-    md: 'markdownlint *.md --config markdown.json'
+    md: 'markdownlint *.md --config markdown.json',
+    watch: `onchange "${cnf.in.src}/**/*.{js,jsx}" -i -- nps private.lint_watch`
   },
   test: {
     default: 'jest --runInBand',
     watch: `onchange "${cnf.in.src}/**/*.{js,jsx}" -i -- nps private.test_watch`
   },
-  validate: series([
-    'nps fix lint lint.md',
-    `npm outdated || ${sx('countdown')}`
-  ]),
+  validate: `nps fix lint lint.md private.validate_last`,
   update: 'npm update --save/save-dev && npm outdated',
   clean: series([
-    exit0(`shx rm -r lib coverage .cache ${cnf.out.dev} ${cnf.out.prod}`),
+    exit0('shx rm -rf _temp'),
+    exit0(
+      `shx rm -r log.txt lib coverage .cache ${cnf.out.dev} ${cnf.out.prod}`
+    ),
     'shx rm -rf node_modules'
   ]),
   // Private
   private: {
-    test_watch: `${sx('clear')} && nps test`
+    lint_watch: `${sx('clear')} && nps lint lint.md`,
+    test_watch: `${sx('clear')} && nps test`,
+    validate_last: `npm outdated || ${sx('countdown')}`
   }
 });
 
@@ -84,6 +86,7 @@ registerSx({
 function watch({ hmr, open, wait }) {
   return series([
     exit0(`shx rm -r ${cnf.out.dev}`),
+    exit0(`shx rm -r .cache`),
     `shx mkdir ${cnf.out.dev}`,
     `shx cp ${cnf.in.startup} ${cnf.out.dev}/index.html`,
     'concurrently "' +
@@ -97,9 +100,8 @@ function watch({ hmr, open, wait }) {
             -d ${cnf.out.dev} 
             --public-url ./ 
             --no-autoinstall
-            --no-cache
             ${hmr ? '' : '--no-hmr'}`,
-        `onchange '${cnf.in.src}/**/*.{js,jsx}' -i -- nps lint`
+        `onchange '${cnf.in.src}/**/*.{js,jsx,ts}' -i -- nps lint`
       ]
         .map(intrim)
         .join('" "') +

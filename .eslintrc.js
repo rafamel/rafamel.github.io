@@ -21,10 +21,14 @@ module.exports = {
   plugins: ['prettier', 'jest', 'react', 'jsx-a11y', 'import', 'babel'],
   globals: {},
   rules: {
+    'no-warning-comments': [
+      1,
+      { terms: ['xxx', 'fixme', 'todo', 'refactor'], location: 'start' }
+    ],
     'no-console': 1,
     'jsx-a11y/no-autofocus': 0,
-    'no-restricted-globals': [2, 'fetch'].concat(globals),
-    'react/prop-types': [2, { ignore: ['styles', 'theme', 'store'] }],
+    'no-restricted-globals': [2, 'window', 'fetch'].concat(globals),
+    'react/prop-types': [2, { ignore: ['styles', 'theme', 'store', 'db'] }],
     // eslint-plugin-babel
     'babel/no-invalid-this': 1,
     'babel/semi': 1,
