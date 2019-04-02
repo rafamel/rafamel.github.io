@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withContext } from 'cxt';
+import { withContext } from '~/utils/cxt';
+import media from '~/utils/media';
 
 const styles = ({ theme }) => ({
   header: {
     margin: '0 0 3.25em',
-    [theme.breakpoints.media('tablet')]: {
+    [media('tablet', theme)]: {
       display: 'inline-block'
     }
   },
@@ -25,7 +26,7 @@ const styles = ({ theme }) => ({
         paddingRight: '1.75em'
       }
     },
-    [theme.breakpoints.media('tablet')]: {
+    [media('tablet', theme)]: {
       fontSize: '5em',
       paddingRight: '1.75em',
       letterSpacing: 0,

@@ -1,5 +1,5 @@
 import { injectGlobal } from 'emotion';
-import prefetch from '@commons/lib/prefetch';
+import prefetch from 'prefetchit';
 import electron from '@static/icons/electron.png';
 import jest from '@static/icons/jest.png';
 import knex from '@static/icons/knex.png';
@@ -20,7 +20,7 @@ import auth0 from '@static/icons/auth0.png';
 import router from '@static/icons/router.png';
 
 // Prefetch images
-prefetch.batchAdd([
+prefetch.bulk(
   electron,
   jest,
   knex,
@@ -39,7 +39,7 @@ prefetch.batchAdd([
   rxdb,
   auth0,
   router
-]);
+);
 
 const iconClass = `tag-icon-${Math.round(Math.random() * 10000)}`;
 injectGlobal({

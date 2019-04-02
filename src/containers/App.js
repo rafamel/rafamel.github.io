@@ -1,43 +1,46 @@
 import React from 'react';
-import { injectGlobal } from 'emotion';
-import { withContext } from 'cxt';
-import { HashRouter as Router } from 'react-router-dom';
+import { Global } from '@emotion/core';
+import { Provider } from '~/utils/cxt';
+import LoadFadeIn from '~/components/LoadFadeIn';
 import Frame from './Frame';
-import Pages from './Pages';
-import LoadFadeIn from '@commons/LoadFadeIn';
+import context from '~/context';
+import media from '~/utils/media';
+import Projects from './Projects';
 
-const styles = ({ theme }) => {
-  injectGlobal({
+const styles = {
+  global: {
     body: {
-      fontFamily: theme.typography.fontFamily,
+      fontFamily: context.theme.typography.fontFamily,
       backgroundColor: '#fafafa',
       margin: '33px 35px 50px',
       boxSizing: 'border-box',
       overflowX: 'hidden',
       '@media print': { backgroundColor: '#ffffff' },
-      [theme.breakpoints.media('tablet')]: {
+      [media('tablet', context.theme)]: {
         margin: '80px 100px 50px 10%'
       },
-      [theme.breakpoints.media('desktop')]: {
+      [media('desktop', context.theme)]: {
         maxWidth: 875,
         paddingRight: 50,
         marginLeft: '19%'
       }
     }
-  });
+  }
 };
+
 const App = () => (
-  <React.Fragment>
-    <LoadFadeIn timeout={10000}>
-      <Router>
+  <Provider value={context}>
+    <React.Fragment>
+      <Global styles={styles.global} />
+      <LoadFadeIn timeout={10000}>
         <Frame>
           <main>
-            <Pages />
+            <Projects />
           </main>
         </Frame>
-      </Router>
-    </LoadFadeIn>
-  </React.Fragment>
+      </LoadFadeIn>
+    </React.Fragment>
+  </Provider>
 );
 
-export default withContext({ styles })(App);
+export default App;

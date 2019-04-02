@@ -79,26 +79,28 @@ class IconGroup extends React.Component {
         })}
         style={style}
       >
-        {icons.map((name) => iconList[name]).map((icon) => (
-          <React.Fragment key={icon.name}>
-            <div
-              css={styles.wrap}
-              onMouseEnter={this.handleHover(icon.name)}
-              onMouseLeave={() => this.setState({ active: null })}
-            >
-              <span className={cx(icon.className, css(icon.styles || {}))} />
-            </div>
-            <span
-              className={cx({
-                [css(styles.name.default)]: true,
-                [css(styles.name.active)]: this.state.active === icon.name,
-                [css(styles.name.inactive)]: this.state.active !== icon.name
-              })}
-            >
-              {icon.name}
-            </span>
-          </React.Fragment>
-        ))}
+        {icons
+          .map((name) => iconList[name])
+          .map((icon) => (
+            <React.Fragment key={icon.name}>
+              <div
+                css={styles.wrap}
+                onMouseEnter={this.handleHover(icon.name)}
+                onMouseLeave={() => this.setState({ active: null })}
+              >
+                <span className={cx(icon.className, css(icon.styles || {}))} />
+              </div>
+              <span
+                className={cx({
+                  [css(styles.name.default)]: true,
+                  [css(styles.name.active)]: this.state.active === icon.name,
+                  [css(styles.name.inactive)]: this.state.active !== icon.name
+                })}
+              >
+                {icon.name}
+              </span>
+            </React.Fragment>
+          ))}
       </div>
     );
   }
