@@ -3,10 +3,12 @@ import prefetch from '@commons/lib/prefetch';
 import electron from '@static/icons/electron.png';
 import jest from '@static/icons/jest.png';
 import knex from '@static/icons/knex.png';
+import objection from '@static/icons/objection.png';
 import redux from '@static/icons/redux.png';
 import materialui from '@static/icons/materialui.png';
 import graphql from '@static/icons/graphql.svg';
 import mobx from '@static/icons/mobx.png';
+import mst from '@static/icons/mst.svg';
 import emotion from '@static/icons/emotion.png';
 import sqlite from '@static/icons/sqlite.png';
 import rxjs from '@static/icons/rxjs.png';
@@ -15,16 +17,19 @@ import lerna from '@static/icons/lerna.png';
 import parcel from '@static/icons/parcel.png';
 import rxdb from '@static/icons/rxdb.png';
 import auth0 from '@static/icons/auth0.png';
+import router from '@static/icons/router.png';
 
 // Prefetch images
 prefetch.batchAdd([
   electron,
   jest,
   knex,
+  objection,
   redux,
   materialui,
   graphql,
   mobx,
+  mst,
   emotion,
   sqlite,
   rxjs,
@@ -32,7 +37,8 @@ prefetch.batchAdd([
   lerna,
   parcel,
   rxdb,
-  auth0
+  auth0,
+  router
 ]);
 
 const iconClass = `tag-icon-${Math.round(Math.random() * 10000)}`;
@@ -75,6 +81,11 @@ export default {
     name: 'MobX',
     className: iconClass,
     styles: { backgroundImage: `url("${mobx}")` }
+  },
+  mst: {
+    name: 'MobX State Tree',
+    className: iconClass,
+    styles: { backgroundImage: `url("${mst}")` }
   },
   parcel: {
     name: 'Parcel Bundler',
@@ -126,10 +137,15 @@ export default {
     className: 'devicon-sequelize-plain',
     styles: { color: '#3d77b8' }
   },
-  objection: {
-    name: 'Knex + Objection ORM',
+  knex: {
+    name: 'Knex',
     className: iconClass,
     styles: { backgroundImage: `url("${knex}")` }
+  },
+  objection: {
+    name: 'Objection.js',
+    className: iconClass,
+    styles: { backgroundImage: `url("${objection}")` }
   },
   babel: {
     name: 'Babel',
@@ -151,6 +167,11 @@ export default {
   react: {
     name: 'React',
     className: 'devicon-react-original colored'
+  },
+  router: {
+    name: 'React Router',
+    className: iconClass,
+    styles: { backgroundImage: `url("${router}")` }
   },
   redux: {
     name: 'Redux',
